@@ -23,6 +23,7 @@ public class AMMain extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d(CT_TAG, "onCreate invocat");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.am_main);
 		mValor = (EditText) findViewById(R.id.am_et_valor);
@@ -97,9 +98,52 @@ public class AMMain extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		Log.d(CT_TAG, "method onCreateOptionsMenu");
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.am_main, menu);
 		return true;
 	}
+
+	@Override
+	protected void onDestroy() {
+		Log.d(CT_TAG, "method onDestroy");
+		super.onDestroy();
+	}
+
+
+	@Override
+	protected void onPause() {
+		Log.d(CT_TAG, "method onPause");
+		super.onPause();
+	}
+
+
+	@Override
+	protected void onRestart() {
+		Log.d(CT_TAG, "method onRestart");
+		super.onRestart();
+	}
+
+
+	@Override
+	protected void onResume() {
+		Log.d(CT_TAG, "method onResume");
+		super.onResume();
+	}
+
+
+	@Override
+	protected void onStart() {
+		Log.d(CT_TAG, "method onStart");
+		super.onStart();
+	}
+
+
+	@Override
+	protected void onStop() {
+		Log.d(CT_TAG, "method onStop");
+		super.onStop();
+	}
+
 
 }

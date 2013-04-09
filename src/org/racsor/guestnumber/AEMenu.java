@@ -1,7 +1,5 @@
 package org.racsor.guestnumber;
 
-import java.util.Random;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,16 +7,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
-import android.widget.TextView;
 
 public class AEMenu extends Activity {
 	private static final String CT_TAG = "AEMenu";
-	private static final String CT_BUNDLE_INCOGNITA = "incognita";
-	private static final String CT_BUNDLE_INTENTOS = "intentos";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d(CT_TAG, "onCreate invocat");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ae_menu);
 		findViewById(R.id.ae_bt_adivinator).setOnClickListener(
@@ -26,9 +21,59 @@ public class AEMenu extends Activity {
 
 					@Override
 					public void onClick(View v) {
+						Log.d(CT_TAG, "method OnClickListener.onClick");
 						invocaAdivinator();
 					}
 				});
+	}
+
+
+	@Override
+	protected void onDestroy() {
+		Log.d(CT_TAG, "method onDestroy");
+		super.onDestroy();
+	}
+
+
+	@Override
+	protected void onPause() {
+		Log.d(CT_TAG, "method onPause");
+		super.onPause();
+	}
+
+
+	@Override
+	protected void onRestart() {
+		Log.d(CT_TAG, "method onRestart");
+		super.onRestart();
+	}
+
+
+	@Override
+	protected void onResume() {
+		Log.d(CT_TAG, "method onResume");
+		super.onResume();
+	}
+
+
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		Log.d(CT_TAG, "method onSaveInstanceState");
+		super.onSaveInstanceState(outState);
+	}
+
+
+	@Override
+	protected void onStart() {
+		Log.d(CT_TAG, "method onStart");
+		super.onStart();
+	}
+
+
+	@Override
+	protected void onStop() {
+		Log.d(CT_TAG, "method onStop");
+		super.onStop();
 	}
 
 
@@ -41,6 +86,7 @@ public class AEMenu extends Activity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
+		Log.d(CT_TAG, "method onCreateOptionsMenu");
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.am_main, menu);
 		return true;
