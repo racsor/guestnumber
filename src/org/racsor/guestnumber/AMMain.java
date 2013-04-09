@@ -64,6 +64,8 @@ public class AMMain extends Activity {
 		mIntentos = 0;
 		mIncognita = new Random().nextInt(100) + 1;
 		Log.d(CT_TAG, "La incongita es:" + mIncognita);
+		mMensaje2.setText(getResources().getQuantityString(
+				R.plurals.am_val_intento, mIntentos, mIntentos));
 
 	}
 
@@ -80,18 +82,18 @@ public class AMMain extends Activity {
 		if (valAct == mIncognita) {
 			mMensaje1.setText(R.string.am_val_acertado);
 			mMensaje2.setText(getResources().getQuantityString(
-					R.plurals.intento, mIntentos, mIntentos));
+					R.plurals.am_val_intento, mIntentos, mIntentos));
 			findViewById(R.id.am_bt_enviar).setEnabled(false);
 		} else if (valAct < mIncognita) {
 			mMensaje1.setText(getResources().getString(R.string.am_val_mayor,
 					valAct));
 			mMensaje2.setText(getResources().getQuantityString(
-					R.plurals.intento, mIntentos, mIntentos));
+					R.plurals.am_val_intento, mIntentos, mIntentos));
 		} else {
 			mMensaje1.setText(getResources().getString(R.string.am_val_menor,
 					valAct));
 			mMensaje2.setText(getResources().getQuantityString(
-					R.plurals.intento, mIntentos, mIntentos));
+					R.plurals.am_val_intento, mIntentos, mIntentos));
 		}
 
 	}

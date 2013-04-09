@@ -8,16 +8,8 @@
     <string name="am_enviar">Enviar</string>
     <string name="am_val_invalido">Introduzca un valor válido</string>
     <string name="am_val_acertado">Has acertado el número</string>
-    <string name="am_val_intento">Llevas %d intentos.</string>
     <string name="am_val_mayor">Número buscado mayor.</string>
     <string name="am_val_menor">Número buscado menor.</string>
     <string name="am_adivinator">Adivinador</string>
 
-    <plurals name="intento">
-        <item quantity="zero">Sin Intentos</item>
-        <item quantity="one">Llevas %d intento.</item>
-        <item quantity="other">Llevas %d intentos.</item>
-    </plurals>
-
-    
 </resources>

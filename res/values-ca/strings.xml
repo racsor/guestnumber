@@ -8,15 +8,8 @@
     <string name="am_enviar">Enviament</string>
     <string name="am_val_invalido">Introduzca un valor vàlid</string>
     <string name="am_val_acertado">Has acertat el número</string>
-    <string name="am_val_intento">Portes %d intents.</string>
     <string name="am_val_mayor">Número buscat major.</string>
     <string name="am_val_menor">Número buscat menor.</string>
     <string name="am_adivinator">Adivinador</string>
-
-    <plurals name="intento">
-        <item quantity="zero">Sense intents</item>
-        <item quantity="one">Portes %d intent.</item>
-        <item quantity="other">Portes %d intents.</item>
-    </plurals>
 
 </resources>
