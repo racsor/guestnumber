@@ -35,7 +35,7 @@ public class AEMenu extends Activity {
 	protected void invocaAdivinator() {
 		Log.d(CT_TAG, "method invocaAdivinator");
 		Intent i=new Intent(this,AMMain.class);
-		
+		startActivity(i);
 	}
 
 
