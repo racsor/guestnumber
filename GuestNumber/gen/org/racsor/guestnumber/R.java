@@ -14,20 +14,23 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int am_bt_enviar=0x7f070002;
-        public static final int am_et_valor=0x7f070001;
-        public static final int am_tv_mensaje1=0x7f070003;
-        public static final int am_tv_mensaje2=0x7f070004;
-        public static final int menu_settings=0x7f070005;
-        public static final int textView1=0x7f070000;
+        public static final int ae_bt_adivinator=0x7f070000;
+        public static final int am_bt_enviar=0x7f070003;
+        public static final int am_et_valor=0x7f070002;
+        public static final int am_tv_mensaje1=0x7f070004;
+        public static final int am_tv_mensaje2=0x7f070005;
+        public static final int menu_settings=0x7f070006;
+        public static final int textView1=0x7f070001;
     }
     public static final class layout {
-        public static final int am_main=0x7f030000;
+        public static final int ae_menu=0x7f030000;
+        public static final int am_main=0x7f030001;
     }
     public static final class menu {
         public static final int am_main=0x7f060000;
     }
     public static final class string {
+        public static final int am_adivinator=0x7f04000a;
         public static final int am_enviar=0x7f040004;
         public static final int am_intronumero=0x7f040003;
         public static final int am_val_acertado=0x7f040006;

@@ -11,5 +11,6 @@
     <string name="am_val_intento">Llevas %d intentos.</string>
     <string name="am_val_mayor">Número buscado mayor.</string>
     <string name="am_val_menor">Número buscado menor.</string>
+    <string name="am_adivinator">Adivinador</string>
 
 </resources>
