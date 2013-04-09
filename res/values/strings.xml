@@ -13,4 +13,10 @@
     <string name="am_val_menor">Número buscado menor.</string>
     <string name="am_adivinator">Adivinador</string>
 
+    <plurals name="intento">
+        <item quantity="zero">Sin Intentos</item>
+        <item quantity="one">Llevas %d intento.</item>
+        <item quantity="other">Llevas %d intentos.</item>
+    </plurals>
+
 </resources>
