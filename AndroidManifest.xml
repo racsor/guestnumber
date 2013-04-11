@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.racsor.carrusel"
-    android:versionCode="1"
+    android:versionCode="2"
     android:versionName="0.1" >
 
- <application android:label="@string/KApplicationName" android:icon="@drawable/ic_launcher">
+    <uses-sdk android:minSdkVersion="7" />
 
-        <activity android:name="MainActivity"
-                  android:label="@string/KApplicationName"
-                  android:theme="@android:style/Theme.Light"
-                  android:configChanges="orientation">
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true" />
 
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/KApplicationName" >
+        <activity
+            android:name="MainActivity"
+            android:configChanges="orientation"
+            android:label="@string/KApplicationName"
+            android:theme="@android:style/Theme.Light" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
     </application>
 
 </manifest>
