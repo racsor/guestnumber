@@ -3,9 +3,15 @@ package org.racsor.guestnumber;
 import java.util.Random;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -15,7 +21,10 @@ public class AMMain extends Activity {
 	private static final String CT_TAG = "AMMAIN";
 	private static final String CT_BUNDLE_INCOGNITA = "incognita";
 	private static final String CT_BUNDLE_INTENTOS = "intentos";
+	private static final int CT_RESET = 1;
+	private static final int CT_EDIT_MAXIM = 2;
 	EditText mValor;
+	EditText mEditMaximo;
 	TextView mMensaje1;
 	TextView mMensaje2;
 	int mIncognita;
@@ -39,10 +48,10 @@ public class AMMain extends Activity {
 					}
 				});
 		if (savedInstanceState == null) {
-			inicializaIncognita();
-		} else
+			inicializaIncognita(100);
+		} else{
 			restaurarEstat(savedInstanceState);
-
+		}
 	}
 
 	private void restaurarEstat(Bundle savedInstanceState) {
@@ -59,10 +68,10 @@ public class AMMain extends Activity {
 		outState.putInt(CT_BUNDLE_INTENTOS, mIntentos);
 	}
 
-	private void inicializaIncognita() {
+	private void inicializaIncognita(int rango) {
 		Log.d(CT_TAG, "inicializaIncognita invocat");
 		mIntentos = 0;
-		mIncognita = new Random().nextInt(100) + 1;
+		mIncognita = new Random().nextInt(rango) + 1;
 		Log.d(CT_TAG, "La incongita es:" + mIncognita);
 		mMensaje2.setText(getMensajeIntento(mIntentos));
 	}
@@ -99,10 +108,70 @@ public class AMMain extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		Log.d(CT_TAG, "method onCreateOptionsMenu");
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.am_main, menu);
+		MenuInflater inf = getMenuInflater();
+		inf.inflate(R.menu.am_menu_main, menu);
 		return true;
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.am_menu_reset:
+			Log.d(CT_TAG, "method onOptionsItemSelected am_menu_reset");
+			showDialog(CT_RESET);
+			break;
+		case R.id.am_menu_editmax:
+			Log.d(CT_TAG, "method onOptionsItemSelected am_menu_editmax");
+			showDialog(CT_EDIT_MAXIM);
+			break;
+
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		switch (id) {
+		case CT_RESET:
+			AlertDialog.Builder adb = new AlertDialog.Builder(this);
+			adb.setTitle("Reiniciar");
+			adb.setMessage("¿Seguro que quieres reiniciar?");
+			adb.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					inicializaIncognita(100);
+					mValor.setText("");
+				}
+			});
+			adb.setNegativeButton("Cancelar", null);
+			return adb.create();
+		case CT_EDIT_MAXIM:
+			AlertDialog.Builder adb2 = new AlertDialog.Builder(this);
+			adb2.setTitle("Editar Máximo");
+			adb2.setMessage("¿Seguro que quieres editar el máximo?");
+			adb2.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					inicializaIncognita(Integer.parseInt(mEditMaximo.getText().toString()));
+				}
+			});
+			adb2.setNegativeButton("Cancelar", null);
+			LayoutInflater layoutInflater=getLayoutInflater();
+			View view=layoutInflater.inflate(R.layout.am_dialog_maximo, null);
+			mEditMaximo = (EditText) view.findViewById(R.id.am_dialog_et_max);
+			adb2.setView(view);
+			return adb2.create();
+		default:
+			break;
+		}
+		return super.onCreateDialog(id);
+	}
+	@Override
+	public void onAttachedToWindow() {
+	    openOptionsMenu(); 
+	};
 	@Override
 	protected void onDestroy() {
 		Log.d(CT_TAG, "method onDestroy");

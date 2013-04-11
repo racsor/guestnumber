@@ -88,7 +88,7 @@ public class AEMenu extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		Log.d(CT_TAG, "method onCreateOptionsMenu");
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.am_main, menu);
+		getMenuInflater().inflate(R.menu.am_menu_main, menu);
 		return true;
 	}
 

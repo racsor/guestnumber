@@ -11,5 +11,7 @@
     <string name="am_val_mayor">Número buscado mayor.</string>
     <string name="am_val_menor">Número buscado menor.</string>
     <string name="am_adivinator">Adivinador</string>
+    <string name="am_menu_reset">Reset</string>
+    <string name="am_menu_editmax">Editar máximo</string>
 
 </resources>
