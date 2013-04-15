@@ -25,6 +25,22 @@ public class AEMenu extends Activity {
 						invocaAdivinator();
 					}
 				});
+		findViewById(R.id.ae_bt_configurator).setOnClickListener(
+				new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						Log.d(CT_TAG, "method OnClickListener.onClick");
+						invocaConfigurador();
+					}
+				});
+	}
+
+
+	protected void invocaConfigurador() {
+		Log.d(CT_TAG, "method invocaAdivinator");
+		Intent i=new Intent(this,APPreferences.class);
+		startActivity(i);
 	}
 
 

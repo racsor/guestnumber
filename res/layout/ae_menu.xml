@@ -10,4 +10,10 @@
         android:layout_height="wrap_content"
         android:text="@string/am_adivinator" />
 
+    <Button
+        android:id="@+id/ae_bt_configurator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Configurador" />
+
 </LinearLayout>

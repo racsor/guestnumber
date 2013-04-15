@@ -5,8 +5,15 @@ import java.util.Random;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,6 +28,7 @@ public class AMMain extends Activity {
 	private static final String CT_TAG = "AMMAIN";
 	private static final String CT_BUNDLE_INCOGNITA = "incognita";
 	private static final String CT_BUNDLE_INTENTOS = "intentos";
+	private static final String CT_BUNDLE_MAXIMO = "maximo";
 	private static final int CT_RESET = 1;
 	private static final int CT_EDIT_MAXIM = 2;
 	EditText mValor;
@@ -39,19 +47,41 @@ public class AMMain extends Activity {
 		mMensaje1 = (TextView) findViewById(R.id.am_tv_mensaje1);
 		mMensaje2 = (TextView) findViewById(R.id.am_tv_mensaje2);
 
-		findViewById(R.id.am_bt_enviar).setOnClickListener(
-				new OnClickListener() {
+		findViewById(R.id.am_bt_enviar).setOnClickListener(new OnClickListener() {
 
-					@Override
-					public void onClick(View v) {
-						computaIntento();
-					}
-				});
+			@Override
+			public void onClick(View v) {
+				computaIntento();
+			}
+		});
 		if (savedInstanceState == null) {
-			inicializaIncognita(100);
-		} else{
+			int maximo = restaurarConfiguracion();
+			inicializaIncognita(maximo);
+		} else {
 			restaurarEstat(savedInstanceState);
 		}
+	}
+	
+	private void creaNotificacion(){
+		Notification not=new Notification(R.drawable.ic_launcher,"incógnita acertada", System.currentTimeMillis());
+		Intent intents=new Intent(this,AMMain.class);
+		PendingIntent pIntent=PendingIntent.getActivity(this, 0, intents, Notification.FLAG_AUTO_CANCEL);
+		not.setLatestEventInfo(this, "Incógnita", "Se acertó la incógnita", pIntent);
+		NotificationManager nm=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+		nm.notify(1, not);
+	}
+
+	private int restaurarConfiguracion() {
+		SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+		String max = pref.getString(getResources().getString(R.string.pref_valor_maximo), "100");
+		int maximo = 0;
+		try {
+			maximo = Integer.valueOf(max);
+		} catch (Exception e) {
+			maximo = 100;
+		}
+
+		return maximo;
 	}
 
 	private void restaurarEstat(Bundle savedInstanceState) {
@@ -89,19 +119,17 @@ public class AMMain extends Activity {
 		if (valAct == mIncognita) {
 			mMensaje1.setText(R.string.am_val_acertado);
 			findViewById(R.id.am_bt_enviar).setEnabled(false);
+			creaNotificacion();
 		} else if (valAct < mIncognita) {
-			mMensaje1.setText(getResources().getString(R.string.am_val_mayor,
-					valAct));
+			mMensaje1.setText(getResources().getString(R.string.am_val_mayor, valAct));
 		} else {
-			mMensaje1.setText(getResources().getString(R.string.am_val_menor,
-					valAct));
+			mMensaje1.setText(getResources().getString(R.string.am_val_menor, valAct));
 		}
 		mMensaje2.setText(getMensajeIntento(mIntentos));
 	}
 
 	public String getMensajeIntento(int mIntentos) {
-		return getResources().getQuantityString(R.plurals.am_val_intento,
-				mIntentos, mIntentos);
+		return getResources().getQuantityString(R.plurals.am_val_intento, mIntentos, mIntentos);
 	}
 
 	@Override
@@ -135,13 +163,18 @@ public class AMMain extends Activity {
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
 		case CT_RESET:
+			SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+			Editor editor = pref.edit();
+			editor.commit();
+			editor.putString(getResources().getString(R.string.pref_valor_maximo), mEditMaximo.getText().toString());
+
 			AlertDialog.Builder adb = new AlertDialog.Builder(this);
 			adb.setTitle("Reiniciar");
 			adb.setMessage("¿Seguro que quieres reiniciar?");
 			adb.setPositiveButton("Si", new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					inicializaIncognita(100);
+					inicializaIncognita(Integer.parseInt(mEditMaximo.getText().toString()));
 					mValor.setText("");
 				}
 			});
@@ -158,8 +191,8 @@ public class AMMain extends Activity {
 				}
 			});
 			adb2.setNegativeButton("Cancelar", null);
-			LayoutInflater layoutInflater=getLayoutInflater();
-			View view=layoutInflater.inflate(R.layout.am_dialog_maximo, null);
+			LayoutInflater layoutInflater = getLayoutInflater();
+			View view = layoutInflater.inflate(R.layout.am_dialog_maximo, null);
 			mEditMaximo = (EditText) view.findViewById(R.id.am_dialog_et_max);
 			adb2.setView(view);
 			return adb2.create();
@@ -168,10 +201,12 @@ public class AMMain extends Activity {
 		}
 		return super.onCreateDialog(id);
 	}
+
 	@Override
 	public void onAttachedToWindow() {
-	    openOptionsMenu(); 
+		openOptionsMenu();
 	};
+
 	@Override
 	protected void onDestroy() {
 		Log.d(CT_TAG, "method onDestroy");

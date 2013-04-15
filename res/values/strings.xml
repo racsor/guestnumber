@@ -13,5 +13,7 @@
     <string name="am_adivinator">Adivinador</string>
     <string name="am_menu_reset">Reset</string>
     <string name="am_menu_editmax">Editar máximo</string>
+    <string name="pref_cat_general">General</string>
+    <string name="pref_valor_maximo">perf_valor_maximo</string>
 
 </resources>
