@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Array of puppy resource IDs -->
+    <string-array name="puppies_array">
+<!--         <item>@drawable/afa_13</item> -->
+<!--         <item>@drawable/afa_20</item> -->
+<!--         <item>@drawable/afa_23</item> -->
+<!--         <item>@drawable/afa_26</item> -->
+<!--         <item>@drawable/afa_30</item> -->
+        <item>@drawable/afag_13</item>
+        <item>@drawable/afag_20</item>
+        <item>@drawable/afag_23</item>
+        <item>@drawable/afag_26</item>
+        <item>@drawable/afag_30</item>
+    </string-array>
+
+</resources>
