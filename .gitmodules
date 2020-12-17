@@ -1,0 +1,3 @@
+[submodule "submoduleCarruselOrig"]
+	path = submoduleCarruselOrig
+	url = git@github.com:racsor/carruselAfa.git
