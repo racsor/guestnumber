@@ -21,13 +21,6 @@ otrso feqaute
 30
 31
 22a
-<<<<<<< HEAD
-<<<<<<< Upstream, based on branch 'feature40' of git@github.com:racsor/guestnumber.git
+23a
 40
 41
-=======
-23a
->>>>>>> 105a6da 23a
-=======
-23a
->>>>>>> branch 'copyMaster' of git@github.com:racsor/guestnumber.git
