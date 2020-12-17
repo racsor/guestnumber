@@ -18,10 +18,6 @@ otrso feqaute
 10
 20
 21
-<<<<<<< Upstream, based on feature30
 30
 31
 22a
-=======
-22a
->>>>>>> e128d00 22A
