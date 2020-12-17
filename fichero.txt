@@ -21,5 +21,9 @@ otrso feqaute
 30
 31
 22a
+<<<<<<< Upstream, based on branch 'feature40' of git@github.com:racsor/guestnumber.git
 40
 41
+=======
+23a
+>>>>>>> 105a6da 23a
